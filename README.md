@@ -76,25 +76,11 @@ result = event.get_result()
 
 ### EventBus
 
-#### `subscribe(event_type, handler)`
-
-Subscribe a handler to an event type.
-
-#### `unsubscribe(event_type, handler)`
-
-Remove a specific handler.
-
-#### `unsubscribe_all(event_type=None)`
-
-Remove all handlers for an event type, or all handlers if `event_type` is None.
-
-#### `dispatch(event)`
-
-Dispatch an event to all subscribed handlers. Returns the event.
-
-#### `wait_for_event(event_type, timeout=None, predicate=None)`
-
-Wait for a specific event with optional timeout and predicate.
+- `subscribe(event_type, handler)` - Register handler for event
+- `unsubscribe(event_type, handler)` - Remove handler
+- `unsubscribe_all(event_type=None)` - Clear handlers
+- `dispatch(event)` - Run all handlers for event
+- `wait_for_event(event_type, timeout=None, predicate=None)` - Wait for event
 
 ```python
 event = await bus.wait_for_event(
@@ -106,18 +92,13 @@ event = await bus.wait_for_event(
 
 ### BaseEvent
 
-#### Properties
-
-- `id` - Unique event identifier
-- `timestamp` - Event creation timestamp
-- `is_completed` - Whether the event has completed
-- `has_error` - Whether the event completed with an error
-
-#### Methods
-
-- `set_result(value)` - Set the event result
-- `get_result(raise_if_none=False, raise_if_exception=True)` - Retrieve the result
-- `set_exception(exc)` - Mark the event as failed
+- `id` - Event identifier
+- `timestamp` - Creation time
+- `is_completed` - Finished?
+- `has_error` - Failed?
+- `set_result(value)` - Store result
+- `get_result()` - Retrieve result
+- `set_exception(exc)` - Mark as failed
 
 ## Error Handling
 
